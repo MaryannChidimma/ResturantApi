@@ -100,7 +100,7 @@ function onListening() {
 	const addr = server.address();
 	const bind = typeof addr === "string" ? "pipe " + addr : "port " + addr.port;
 
-	logger.info(
-		`listening on port ${server.address().port} in ${app.get("env")} mode.`
-	);
+	// logger.info(
+	// 	`listening on port ${server.address().port} in ${app.get("env")} mode.`
+	// );
 }
