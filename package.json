@@ -1,7 +1,7 @@
 {
-	"name": "partzshop",
+	"name": "eva-kitchen",
 	"version": "1.0.0",
-	"description": "Partzshop API",
+	"description": "eva-kitchen API",
 	"main": "server.js",
 	"scripts": {
 		"debug": "set DEBUG=* && nodemon ./bin/www | bunyan",

@@ -32,13 +32,12 @@ module.exports = (loggerConfig) => {
 	app.use(express.json()); //for parsing application/json
 	app.use(express.urlencoded({ extended: false })); //for parsing application/x-www-form-urlencoded
 	app.use(cors());
-
+	
 	app.get("/status", (req, res, next) => {
 		res.status(200).json({
 			message: "Server is up and running",
 		});
 	});
-
 	app.use("/api", rootRouter);
 
 	// if route is not handled to the point, return a 404 error

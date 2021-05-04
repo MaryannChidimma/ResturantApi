@@ -1,7 +1,7 @@
 module.exports = {
 	apps: [
 		{
-			name: "Partzshop-api",
+			name: "eva-kitchen-api",
 			script: "bin/www.js",
 			instances: "max",
 			env: {
