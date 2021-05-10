@@ -4,21 +4,21 @@ const authCtrl = require("../controllers/auth.controller")
 module.exports = function () {
 
     router.post(
-        "/login",
+        "/auth/login",
         authCtrl.login
     );
 
     router.post(
-        "/signup",
+        "/auth/signup",
         authCtrl.signup
     );
 
     router.post(
-        "/reset-password-mail",
+        "/auth/reset-password-mail",
         authCtrl.resetPasswordMail
     )
     router.patch(
-        "/reset-password",
+        "/auth/reset-password",
         authCtrl.resetPassword
     )
 
