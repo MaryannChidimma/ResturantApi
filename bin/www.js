@@ -18,7 +18,7 @@ const port = normalizePort(config.PORT);
 const serverType = config.SERVER_TYPE;
 app.set("port", port);
 let server = {};
-const logger = loggerConfig.log();
+// const logger = loggerConfig.log();
 
 /**
  * Create Unified server based on the server type environment
