@@ -99,7 +99,7 @@ function onError(error) {
 function onListening() {
 	const addr = server.address();
 	const bind = typeof addr === "string" ? "pipe " + addr : "port " + addr.port;
-
+	console.log(`listening on port ${server.address().port} in ${app.get("env")}`)
 	// logger.info(
 	// 	`listening on port ${server.address().port} in ${app.get("env")} mode.`
 	// );
