@@ -5,7 +5,8 @@
 	"main": "server.js",
 	"scripts": {
 		"debug": "set DEBUG=* && nodemon ./bin/www | bunyan",
-		"start": "pm2 start ecosystem.config.js --env production",
+		"start": "node ./bin/www | bunyan",
+		"startDev": "pm2 start ecosystem.config.js --env production",
 		"dev": "nodemon ./bin/www | bunyan",
 		"test": "mocha"
 	},
