@@ -8,8 +8,8 @@ exports.generateToken = (data, time = "24h") => {
         process.env.JWT_SECRET_KEY,
         { expiresIn: time }
     )
-}
 
+}
 exports.hashPassword = async (password) => {
     const salt = await bcrypt.genSalt(10)
     return await bcrypt.hash(password, salt)
