@@ -10,7 +10,7 @@ class MenuController {
     }
 
     async getAll(req, res) {
-        const data = await menuService.getAll();
+        const data = await menuService.find();
         res.send(appResponse("All menus", data))
 
     }
