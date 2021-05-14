@@ -27,6 +27,7 @@
 		"bcrypt": "^5.0.1",
 		"bunyan": "^1.8.14",
 		"bunyan-seq": "^0.7.0",
+		"cloudinary": "^1.25.1",
 		"compression": "^1.7.3",
 		"cors": "^2.8.5",
 		"dotenv": "^8.2.0",
