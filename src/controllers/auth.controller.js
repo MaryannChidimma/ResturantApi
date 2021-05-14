@@ -54,17 +54,15 @@ class AuthController {
     resetPasswordMail = async (req, res) => {
         const { email } = req.body
         const validUser = await userService.findByEmail(email)
+        if (validUser) {
+            const secretKey = `${new Date(validUser.updatedAt).getTime()}${validUser._id}`
 
-        if (!validUser) throw new BadRequestError("user does not exist")
-        console.log(validUser)
+            const token = genResetPasswordToken(validUser, secretKey)
 
-        const secretKey = `${new Date(validUser.updatedAt).getTime()}${validUser._id}`
+            const resetToken = `${token}__${validUser._id}`
 
-        const token = genResetPasswordToken(validUser, secretKey)
-
-        const resetToken = `${token}__${validUser._id}`
-
-        await userService.resetPasswordMail(validUser, resetToken)
+            await userService.resetPasswordMail(validUser, resetToken)
+        }
 
         res.send(appResponse("check your email"))
     }
