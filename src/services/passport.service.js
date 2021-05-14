@@ -6,7 +6,7 @@ module.exports = (UserService) => {
     passport.use(new OAuth2Strategy({
         clientID: process.env.Google_client_id,
         clientSecret: process.env.Google_secret_key,
-        callbackURL: `${process.env.API_BASE_URL}/auth/google/callback`
+        callbackURL: `${process.env.Base_url}/auth/google/callback`
     },
         async function (accessToken, refreshToken, profile, done) {
 
