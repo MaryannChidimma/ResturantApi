@@ -22,10 +22,7 @@ const mealSchema = new mongoose.Schema({
         type: Number,
         default: 0
     },
-    quantity: {
-        type: Number,
-        required: true
-    },
+
     category: {
         type: mongoose.Types.ObjectId,
         ref: "categories",
@@ -38,4 +35,4 @@ const mealSchema = new mongoose.Schema({
     }
 );
 
-module.exports = mongoose.model("meal", mealSchema);
+module.exports = mongoose.model("menu", mealSchema);

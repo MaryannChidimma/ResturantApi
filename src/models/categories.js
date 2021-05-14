@@ -7,6 +7,9 @@ const categorySchema = new mongoose.Schema({
     }
 
 },
-    { timestamps: true })
+    {
+        timestamps: true,
+
+    })
 
 module.exports = mongoose.model("categories", categorySchema)

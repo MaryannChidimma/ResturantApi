@@ -94,7 +94,8 @@ class AuthController {
     oAuth = async (req, res) => {
         console.log(req.user)
         const token = generateToken(req.user)
-        res.send(appResponse("user logged in successfully", { token }))
+        res.redirect(`turbopay://login?data${token}`)
+        //res.send(appResponse("user logged in successfully", { token }))
     }
 
 }

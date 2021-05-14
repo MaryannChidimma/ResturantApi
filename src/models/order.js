@@ -6,11 +6,11 @@ const orderSchema = new mongoose.Schema({
         type: mongoose.Types.ObjectId,
         ref: "users"
     },
-    meals: [
+    menu: [
         {
-            meal: {
+            menu: {
                 type: mongoose.Types.ObjectId,
-                ref: "meals"
+                ref: "menu"
             },
             quantity: { type: Number },
             price: { type: Number },
