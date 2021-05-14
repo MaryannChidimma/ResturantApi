@@ -1,4 +1,4 @@
-const { resetPassword } = require('../controllers/auth.controller');
+
 const model = require('../models/user')
 const mailer = require('../utils/mailer')
 

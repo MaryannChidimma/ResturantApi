@@ -26,7 +26,7 @@ const userSchema = new mongoose.Schema({
     },
     password: {
         type: String,
-        required: true,
+        // required: true,
         minlength: 3,
         maxlength: 255,
         trim: true
@@ -34,7 +34,6 @@ const userSchema = new mongoose.Schema({
 
     contact: {
         type: String,
-        required: true,
         minlength: 9,
         maxlength: 11,
         trim: true

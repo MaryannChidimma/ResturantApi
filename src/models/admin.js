@@ -32,6 +32,12 @@ const adminSchema = new mongoose.Schema({
         maxlength: 255,
         trim: true
     },
+
+    createdBy: {
+        type: mongoose.Types.ObjectId,
+        ref: "admin",
+        required: true
+    },
 }, { timestamps: true })
 
-module.exports = mongoose.model(admin, adminSchema);
+module.exports = mongoose.model("admin", adminSchema);

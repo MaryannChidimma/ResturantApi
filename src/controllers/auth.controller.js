@@ -12,6 +12,8 @@ const { generateToken,
 
 const jwt = require('jsonwebtoken')
 const userService = require("../services/user.service");
+require('../services/passport.service')(userService)
+
 
 
 class AuthController {
@@ -26,7 +28,7 @@ class AuthController {
         if (!isValidPassword)
             throw new UnAuthorizedError("Invalid email or password");
 
-        const authToken = await generateToken(isValidUser, "30h");
+        const authToken = generateToken(isValidUser);
         console.log(authToken)
 
         return res.send(
@@ -87,6 +89,12 @@ class AuthController {
             throw new BadRequestError("Invalid password reset token");
         }
 
+    }
+
+    oAuth = async (req, res) => {
+        console.log(req.user)
+        const token = generateToken(req.user)
+        res.send(appResponse("user logged in successfully", { token }))
     }
 
 }
