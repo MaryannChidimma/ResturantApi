@@ -37,13 +37,14 @@ class AuthController {
     };
 
     signup = async (req, res) => {
+
         const isExistingUser = await userService.findByEmail(req.body.email);
         if (isExistingUser)
             throw new BadRequestError("This email is already registered");
 
-        const password = await hashPassword(req.body.password)
+        req.body.password = await hashPassword(req.body.password)
 
-        await userService.create({ ...req.body, password });
+        await userService.create(req.body);
 
         res.send(
             appResponse("User created successfully")

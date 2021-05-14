@@ -2,15 +2,7 @@ const mongoose = require('mongoose')
 
 const adminSchema = new mongoose.Schema({
 
-    firstName: {
-        type: String,
-        required: true,
-        minlength: 3,
-        maxlength: 255,
-        trim: true,
-    },
-
-    lastName: {
+    fullName: {
         type: String,
         required: true,
         minlength: 3,

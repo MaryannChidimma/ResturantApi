@@ -1,5 +1,7 @@
 const router = require("express").Router();
 const authCtrl = require("../controllers/auth.controller")
+const joiValidator = require("../validators");
+const { authSignUpSchema, authLoginSchema } = require("../validators/auth.schema")
 const passport = require("passport");
 require('../services/passport.service')
 
@@ -7,11 +9,13 @@ module.exports = function () {
 
     router.post(
         "/auth/login",
+        joiValidator(authLoginSchema),
         authCtrl.login
     );
 
     router.post(
         "/auth/signup",
+        joiValidator(authSignUpSchema),
         authCtrl.signup
     );
 
