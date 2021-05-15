@@ -27,6 +27,15 @@ const mealSchema = new mongoose.Schema({
         type: mongoose.Types.ObjectId,
         ref: "categories",
         required: true,
+    },
+    isPopular: {
+        type: Boolean,
+        default: false
+    },
+
+    isSpecial: {
+        type: Boolean,
+        default: false
     }
 
 },

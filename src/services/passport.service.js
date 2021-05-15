@@ -16,8 +16,7 @@ module.exports = (UserService) => {
                 done(null, isExistingUser)
 
             const newUser = await UserService.create({
-                "firstName": profile._json.family_name,
-                "lastName": profile._json.given_name,
+                "fullName": `${profile._json.family_name} ${profile._json.given_name}`,
                 "email": profile._json.email,
                 "googleId": profile._json.sub
             })

@@ -8,13 +8,8 @@ class CategoriesService {
 
         return await model.create(data)
     }
-
-    getAll = async () => {
+    find = async () => {
         return await model.find()
-    }
-
-    find = async (id) => {
-        return await model.findById(id)
     }
     update = async (id, data) => {
         return await model.findByIdAndUpdate(id, data)
