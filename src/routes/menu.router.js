@@ -1,7 +1,7 @@
 const router = require("express").Router();
 const menuCtrl = require("../controllers/menu.controllers")
 const joiValidator = require('../validators/index')
-const { menuSchema } = require('../validators/menu.schema')
+const { menuSchema, updateMenuSchema } = require('../validators/menu.schema')
 const multer = require('multer');
 const upload = multer({ dest: 'uploads/' });
 
@@ -18,6 +18,22 @@ module.exports = function () {
         "/menu",
         menuCtrl.getAll
     );
+
+    router.get(
+        "/menu/getOne",
+        menuCtrl.getOne
+
+    )
+
+    router.patch(
+        "/menu/update",
+        joiValidator(updateMenuSchema),
+        menuCtrl.update
+    )
+
+    router.delete(
+        "/menu/delete"
+    )
 
 
     return router;

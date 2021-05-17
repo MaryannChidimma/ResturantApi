@@ -36,6 +36,7 @@
 		"handlebars": "^4.7.7",
 		"joi": "^17.4.0",
 		"jsonwebtoken": "^8.5.0",
+		"lodash": "^4.17.21",
 		"mjml": "^4.9.3",
 		"mongoose": "^5.4.18",
 		"morgan": "^1.9.1",

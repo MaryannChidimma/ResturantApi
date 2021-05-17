@@ -23,14 +23,6 @@ const userSchema = new mongoose.Schema({
         trim: true
     },
 
-    contact: {
-        type: String,
-        minlength: 9,
-        maxlength: 11,
-        trim: true,
-        default: null
-    },
-
     phoneNumber: {
         type: String,
         minlength: 10,

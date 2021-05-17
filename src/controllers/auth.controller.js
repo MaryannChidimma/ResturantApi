@@ -12,6 +12,7 @@ const { generateToken,
 
 const jwt = require('jsonwebtoken')
 const userService = require("../services/user.service");
+const _ = require('lodash')
 require('../services/passport.service')(userService)
 
 
@@ -29,10 +30,11 @@ class AuthController {
             throw new UnAuthorizedError("Invalid email or password");
 
         const authToken = generateToken(isValidUser);
-        console.log(authToken)
+
+        const userData = _.omit(isValidUser._doc, ['password', 'googleId'])
 
         return res.send(
-            appResponse("User login successful", { authToken })
+            appResponse("User login successful", { authToken, ...userData })
         );
     };
 
@@ -44,10 +46,10 @@ class AuthController {
 
         req.body.password = await hashPassword(req.body.password)
 
-        await userService.create(req.body);
+        const user = await userService.create(req.body);
 
         res.send(
-            appResponse("User created successfully")
+            appResponse("User created successfully", _.omit(user._doc, ['password', 'googleId']))
         );
     };
 
