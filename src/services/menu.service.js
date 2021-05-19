@@ -11,8 +11,9 @@ class MenuService {
     }
 
     async find(id) {
-        return await model.findById(id);
+        return await model.find({});
     }
+
 
     async update(id, updateQuery) {
         return await model.findOneAndUpdate(id, updateQuery)
