@@ -13,7 +13,7 @@ const errorNames = [
 ];
 
 module.exports.ErrorHandler = function (error, req, res, next) {
-	if (error.name === "PartzshopError" || error.isOperational) {
+	if (error.name === "eva-kitchenError" || error.isOperational) {
 		return res
 			.status(error.statusCode)
 			.send(appResponse(error.message, null, false));

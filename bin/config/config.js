@@ -1,7 +1,7 @@
 const development = {
 	env: "development",
 	PORT: process.env.PORT || 3000,
-	DB_URI: process.env.DB_URI || "mongodb://localhost:27017/partzshop",
+	DB_URI: process.env.DB_URI || "mongodb://localhost:27017/eva-kitchen",
 	SERVER_TYPE: process.env.SERVER_TYPE || "http",
 };
 

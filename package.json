@@ -11,18 +11,15 @@
 		"test": "mocha"
 	},
 	"repository": {
-		"type": "git",
-		"url": "git+https://gitlab.com/genesys_development/partzshop/partzshop_main_api.git"
+		"type": "",
+		"url": ""
 	},
 	"keywords": [
 		"Genesys_node_api",
 		"partzshop"
 	],
 	"license": "ISC",
-	"bugs": {
-		"url": "https://gitlab.com/genesys_development/partzshop/partzshop_main_api/issues"
-	},
-	"homepage": "https://gitlab.com/genesys_development/partzshop/partzshop_main_api#readme",
+
 	"dependencies": {
 		"bcrypt": "^5.0.1",
 		"bunyan": "^1.8.14",
