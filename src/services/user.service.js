@@ -1,6 +1,5 @@
 
 const model = require('../models/user');
-const { hashPassword } = require('../utils/authHandler');
 const mailer = require('../utils/mailer')
 
 class userService {
