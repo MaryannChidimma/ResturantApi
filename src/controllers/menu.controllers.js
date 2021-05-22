@@ -11,7 +11,8 @@ class MenuController {
     }
 
     async getAll(req, res) {
-        const menu = await menuService.find();
+        //   const {skip, limit, query} = req.query
+        const menu = await menuService.find(req.query, req.body);
         res.send(appResponse("All menus", menu))
     }
 

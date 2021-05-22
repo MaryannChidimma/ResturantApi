@@ -10,8 +10,19 @@ class MenuService {
 
     }
 
-    async find(id) {
-        return await model.find({});
+    async find(query, item) {
+
+        let limit = Number(query.limit) || 10;
+        const skip = Number(query.skip) || 0
+        const match = item || {}
+
+
+
+        return model.aggregate([
+            { $match: item },
+            { $skip: skip },
+            { $limit: limit }
+        ])
     }
 
 
