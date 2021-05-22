@@ -16,7 +16,7 @@ class MenuService {
         const skip = Number((query.page - 1) * query.limit) || 0
 
         return model.aggregate([
-            { $match: match },
+            { $match: {} },
             { $skip: skip },
             { $limit: limit }
         ])
