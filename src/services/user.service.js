@@ -1,8 +1,9 @@
 
-const model = require('../models/user')
+const model = require('../models/user');
+const { hashPassword } = require('../utils/authHandler');
 const mailer = require('../utils/mailer')
 
-class modelService {
+class userService {
     async create(data) {
         return await model.create(data);
     }
@@ -11,8 +12,8 @@ class modelService {
         return await model.findOne({ email });
     }
 
-    async findById(id) {
-        return await model.findById(id);
+    async find(id) {
+        return await model.find({}).select(['-password', '-googleId']);
     }
     async update(id, updateQuery) {
         return await model.findByIdAndUpdate(id, updateQuery);
@@ -34,5 +35,5 @@ class modelService {
 
 }
 
-module.exports = new modelService();
+module.exports = new userService();
 
