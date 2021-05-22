@@ -12,14 +12,11 @@ class MenuService {
 
     async find(query, item) {
 
-        let limit = Number(query.limit) || 10;
-        const skip = Number(query.skip) || 0
-        const match = item || {}
-
-
+        const limit = Number(query.limit) || 10;
+        const skip = Number((query.page - 1) * query.limit) || 0
 
         return model.aggregate([
-            { $match: item },
+            { $match: match },
             { $skip: skip },
             { $limit: limit }
         ])
