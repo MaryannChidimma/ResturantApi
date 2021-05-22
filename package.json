@@ -15,11 +15,10 @@
 		"url": ""
 	},
 	"keywords": [
-		"Genesys_node_api",
-		"partzshop"
+		"node_api",
+		"eva-kitchen"
 	],
 	"license": "ISC",
-
 	"dependencies": {
 		"bcrypt": "^5.0.1",
 		"bunyan": "^1.8.14",

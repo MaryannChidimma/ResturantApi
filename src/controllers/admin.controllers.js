@@ -2,6 +2,7 @@ const appResponse = require("../../lib/appResponse");
 const { BadRequestError, UnAuthorizedError } = require("../../lib/appError");
 const adminService = require("../services/admin.services");
 const { hashPassword, comparePassword, generateToken } = require("../utils/authHandler");
+const _ = require('lodash')
 
 class AdminController {
     signup = async (req, res) => {
@@ -11,8 +12,10 @@ class AdminController {
 
         req.body.password = await hashPassword(req.body.password);
 
-        await adminService.create({ ...req.body, createdBy: req.admin._id });
-        res.send(appResponse("admin created successfully"));
+        const admin = await adminService.create({ ...req.body, createdBy: req.admin._id });
+        res.send(
+            appResponse("Admin created successfully", _.omit(admin._doc, ['password']))
+        );
     };
 
     login = async (req, res) => {
@@ -27,7 +30,10 @@ class AdminController {
             throw new UnAuthorizedError("Invalid email or password");
 
         const authToken = generateToken(validAdmin);
-        res.send(appResponse("admin login successful", { authToken }));
+        const adminData = _.omit(validAdmin._doc, ['password', 'updatedAt'])
+        res.send(
+            appResponse("admin login successful", { ...adminData, authToken })
+        );
     };
 }
 

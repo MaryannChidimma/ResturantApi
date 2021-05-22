@@ -6,6 +6,7 @@
 .pnp.js
 
 #local uploads
+/uploads/*/*
 #/uploads/images/*
 
 # testing
