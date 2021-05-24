@@ -1,5 +1,7 @@
+const { options } = require("joi");
 const { DuplicateError } = require("../../lib/appError");
 const model = require("../models/menu")
+const _ = require("lodash")
 
 
 class MenuService {
@@ -10,16 +12,16 @@ class MenuService {
 
     }
 
-    async find(query, item) {
+    async find(query) {
 
-        const limit = Number(query.limit) || 10;
-        const skip = Number((query.page - 1) * query.limit) || 0
+        let limit = Number(query.limit) || 10;
+        const page = query.pageNumber || 1
 
-        return model.aggregate([
-            { $match: {} },
-            { $skip: skip },
-            { $limit: limit }
-        ])
+        const options = { page, limit }
+        query = _.omit(query, ["limit", "page"])
+
+        return model.paginate(query, options)
+
     }
 
 
