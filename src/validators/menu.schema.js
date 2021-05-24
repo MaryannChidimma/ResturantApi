@@ -15,8 +15,18 @@ const updateMenuSchema = Joi.object({
     category: Joi.string().regex(/^[0-9a-fA-F]{24}$/),
 })
 
+const filterMenuSchema = Joi.object({
+    isPopular: Joi.boolean(),
+    isSpecial: Joi.boolean(),
+    category: Joi.string().regex(/^[0-9a-fA-F]{24}$/),
+    limit: Joi.string(),
+    pageNumber: Joi.number(),
+
+})
+
 
 module.exports = {
     menuSchema,
-    updateMenuSchema
+    updateMenuSchema,
+    filterMenuSchema
 };
