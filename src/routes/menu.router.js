@@ -4,7 +4,6 @@ const joiValidator = require('../validators/index')
 const { menuSchema, updateMenuSchema, filterMenuSchema } = require('../validators/menu.schema')
 const { authenticateAdmin } = require('../middlewares/authMiddleware')
 const multer = require('multer');
-const { query } = require("express");
 const upload = multer({ dest: 'uploads/' });
 
 module.exports = function () {
