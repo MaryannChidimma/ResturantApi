@@ -18,7 +18,7 @@ module.exports = function () {
 
     router.get(
         "/menu",
-        // joiValidator(filterMenuSchema, "query"),
+        joiValidator(filterMenuSchema, "query"),
         menuCtrl.getAll
     );
 
