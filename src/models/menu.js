@@ -1,6 +1,7 @@
 const mongoose = require('mongoose')
+const mongoosePaginate = require("mongoose-paginate-v2");
 
-const mealSchema = new mongoose.Schema({
+const menuSchema = new mongoose.Schema({
 
     name: {
         type: String,
@@ -44,4 +45,6 @@ const mealSchema = new mongoose.Schema({
     }
 );
 
-module.exports = mongoose.model("menu", mealSchema);
+menuSchema.plugin(mongoosePaginate);
+
+module.exports = mongoose.model("menu", menuSchema);
