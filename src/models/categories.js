@@ -7,7 +7,8 @@ const categorySchema = new mongoose.Schema({
     },
     image: {
         type: String
-    }
+    },
+    menus: [{type: mongoose.Schema.Types.ObjectId, ref: 'menu'}]
 },
     {
         timestamps: true,
