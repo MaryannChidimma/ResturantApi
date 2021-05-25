@@ -40,7 +40,7 @@ module.exports.ErrorHandler = function (error, req, res, next) {
 	}
 
 	if (errorNames.includes(error.name)) {
-		return res.status(400).send(appReponse(error.message, null, false));
+		return res.status(400).send(appResponse(error.message, null, false));
 	}
 
 	// log error

@@ -1,42 +1,43 @@
 const { options } = require("joi");
 const { DuplicateError } = require("../../lib/appError");
-const model = require("../models/menu")
-const _ = require("lodash")
-
+const model = require("../models/menu");
+const _ = require("lodash");
 
 class MenuService {
-    async create(data) {
-        const existingData = await model.findOne({ name: data.name })
-        if (existingData) throw new DuplicateError()
-        return await model.create(data);
+	async create(data) {
+		const existingData = await model.findOne({ name: data.name });
+		if (existingData) throw new DuplicateError();
+		return await model.create(data);
+	}
 
-    }
+	async find(query) {
+		let limit = Number(query.limit) || 10;
+		const page = query.pageNumber || 1;
 
-    async find(query) {
+		const options = {
+			page,
+			limit,
+			populate: {
+				path: "category",
+				select: "name _id",
+			},
+		};
+		query = _.omit(query, ["limit", "page"]);
 
-        let limit = Number(query.limit) || 10;
-        const page = query.pageNumber || 1
+		return model.paginate(query, options);
+	}
 
-        const options = { page, limit }
-        query = _.omit(query, ["limit", "page"])
+	async update(id, updateQuery) {
+		return await model.findOneAndUpdate(id, updateQuery);
+	}
 
-        return model.paginate(query, options)
+	async getOne(id) {
+		return await model.findOne({ _id: id });
+	}
 
-    }
-
-
-    async update(id, updateQuery) {
-        return await model.findOneAndUpdate(id, updateQuery)
-    }
-
-    async getOne(id) {
-        return await model.findOne({ _id: id });
-    }
-
-    async delete(id) {
-        return await model.remove({ _id: id });
-    }
-
+	async delete(id) {
+		return await model.remove({ _id: id });
+	}
 }
 
-module.exports = new MenuService()
+module.exports = new MenuService();
