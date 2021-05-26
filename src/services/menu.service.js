@@ -16,7 +16,7 @@ class MenuService {
         let limit = Number(query.limit) || 10;
         const page = Number(query.pageNumber) || 1
 
-        const options = { page, limit, populate: 'categories' }
+        const options = { page, limit, populate: 'category' }
         query = _.omit(query, ["limit", "page"])
 
         return model.paginate(query, options)
