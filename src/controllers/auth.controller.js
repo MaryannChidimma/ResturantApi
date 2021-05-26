@@ -94,13 +94,10 @@ class AuthController {
     }
 
     oAuth = async (req, res) => {
-
         const token = generateToken(req.user)
         const user = req.user
-
-        const data = JSON.stringify({ token, ...user })
+        const data = JSON.stringify({ token, user })
         res.redirect(`eva-kitchen://login?data=${data}`)
-    
     }
 
 }
