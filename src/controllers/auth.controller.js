@@ -12,7 +12,8 @@ const { generateToken,
 
 const jwt = require('jsonwebtoken')
 const userService = require("../services/user.service");
-const _ = require('lodash')
+const _ = require('lodash');
+const { json } = require("express");
 require('../services/passport.service')(userService)
 
 
@@ -93,10 +94,13 @@ class AuthController {
     }
 
     oAuth = async (req, res) => {
-        console.log(req.user)
+
         const token = generateToken(req.user)
-        res.redirect(`turbopay://login?data${token}`)
-        //res.send(appResponse("user logged in successfully", { token }))
+        const user = req.user
+
+        const data = JSON.stringify({ token, ...user })
+        res.redirect(`eva-kitchen://login?data=${data}`)
+    
     }
 
 }

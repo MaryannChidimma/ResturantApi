@@ -1,6 +1,7 @@
 const mongoose = require('mongoose')
 const mongoosePaginate = require("mongoose-paginate-v2");
 
+
 const menuSchema = new mongoose.Schema({
 
     name: {
@@ -12,6 +13,7 @@ const menuSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+
     image: {
         type: String
     },
@@ -33,13 +35,31 @@ const menuSchema = new mongoose.Schema({
         type: Boolean,
         default: false
     },
-
     isSpecial: {
         type: Boolean,
         default: false
+    },
+    rating: {
+        type: Number,
+        default: 5
+
+    },
+    noOfRating: {
+        type: Number,
+        default: 1
+    },
+    isAvailable: {
+        type: Boolean,
+        default: true
+    },
+    noOfOrder: {
+        type: Number,
+        default: 0
     }
 
+
 },
+
     {
         timestamps: true,
     }

@@ -20,7 +20,7 @@ const filterMenuSchema = Joi.object({
     isSpecial: Joi.boolean(),
     category: Joi.string().regex(/^[0-9a-fA-F]{24}$/),
     limit: Joi.string(),
-    pageNumber: Joi.number(),
+    pageNumber: Joi.string(),
 
 })
 
