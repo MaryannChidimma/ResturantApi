@@ -15,9 +15,9 @@ class MenuService {
     async find(query) {
 
         let limit = Number(query.limit) || 10;
-        const page = query.pageNumber || 1
+        const page = Number(query.pageNumber) || 1
 
-        const options = { page, limit }
+        const options = { page, limit, populate: 'categories' }
         query = _.omit(query, ["limit", "page"])
 
         return model.paginate(query, options)
@@ -25,8 +25,8 @@ class MenuService {
     }
 
 
-    async update(id, updateQuery) {
-        return await model.findOneAndUpdate(id, updateQuery)
+    async update(_id, updateQuery) {
+        return await model.findOneAndUpdate({ _id }, updateQuery, { new: true })
     }
 
     async getOne(id) {
@@ -35,6 +35,11 @@ class MenuService {
 
     async delete(id) {
         return await model.remove({ _id: id });
+    }
+
+    rateMenu(newRate, previousRate, noOfPrevRating, noOfRating) {
+        const newRating = ((newRate + previousRate) * noOfPrevRating) / noOfRating
+        return newRating;
     }
 
 }

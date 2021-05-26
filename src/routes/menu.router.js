@@ -10,7 +10,7 @@ module.exports = function () {
 
     router.post(
         "/menu",
-        authenticateAdmin,
+        //authenticateAdmin,
         upload.single('image'),
         joiValidator(menuSchema),
         menuCtrl.create
@@ -33,6 +33,11 @@ module.exports = function () {
         authenticateAdmin,
         joiValidator(updateMenuSchema),
         menuCtrl.update
+    )
+
+    router.post(
+        "/menu/rating",
+        menuCtrl.ratings
     )
 
     router.delete(
