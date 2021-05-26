@@ -30,17 +30,11 @@ class MenuController {
 
         const menu = await menuService.getOne(menuId)
 
-        if (menu.rating !== 0) {
-            const noOfRating = menu.noOfRating + 1
-            const averageRating = menuService.rateMenu(Number(req.body.rating), menu.rating, menu.noOfRating, noOfRating)
+        const noOfRating = menu.noOfRating + 1
+        const averageRating = menuService.rateMenu(Number(req.body.rating), menu.rating, menu.noOfRating, noOfRating)
 
-            let getMenu = await menuService.update(menuId, { rating: averageRating, noOfRating })
-            console.log("there is an already existing item" + getMenu)
-        }
-        else {
-            let updatedMenu = await menuService.update(menuId, { rating: req.body.rating })
-            console.log("if there is no rating" + updatedMenu)
-        }
+        await menuService.update(menuId, { rating: averageRating, noOfRating })
+  
         res.send(appResponse("menu rated successfully"))
 
     }

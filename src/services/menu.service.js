@@ -37,7 +37,7 @@ class MenuService {
     }
 
     rateMenu(newRate, previousRate, noOfPrevRating, noOfRating) {
-        const newRating = ((newRate + previousRate) * noOfPrevRating) / noOfRating
+        const newRating = (newRate + (previousRate * noOfPrevRating)) / noOfRating
         return newRating;
     }
 
