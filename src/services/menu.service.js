@@ -1,8 +1,7 @@
 const { options } = require("joi");
 const { DuplicateError } = require("../../lib/appError");
-const model = require("../models/menu")
-const _ = require("lodash")
-
+const model = require("../models/menu");
+const _ = require("lodash");
 
 class MenuService {
     async create(data) {
@@ -44,4 +43,4 @@ class MenuService {
 
 }
 
-module.exports = new MenuService()
+module.exports = new MenuService();
