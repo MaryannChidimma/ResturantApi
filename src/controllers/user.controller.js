@@ -11,7 +11,6 @@ class userController {
 	}
 
 	async updateUser(req, res) {
-        console.log(req.body,req.file);
         const { fullName, phoneNumber, address } = req.body;
         if (!(fullName && phoneNumber && address))
         throw new ExpectationFailedError();
