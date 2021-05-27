@@ -28,6 +28,11 @@ module.exports = function () {
 
     )
 
+    router.get(
+        "/menu/getPopular",
+        menuCtrl.getPopular
+    )
+
     router.patch(
         "/menu/update",
         authenticateAdmin,
