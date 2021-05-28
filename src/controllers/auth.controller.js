@@ -13,7 +13,6 @@ const { generateToken,
 const jwt = require('jsonwebtoken')
 const userService = require("../services/user.service");
 const _ = require('lodash');
-const { json } = require("express");
 require('../services/passport.service')(userService)
 
 
