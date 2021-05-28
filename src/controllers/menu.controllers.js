@@ -19,7 +19,10 @@ class MenuController {
         const data = await menuService.getOne(req.query.id);
         res.send(appResponse("Menu details gotten successfully", data))
     }
-
+    async getPopular(req, res) {
+        const data = await menuService.getPopular();
+        res.send(appResponse("Popular menu gotten successfully", data))
+    }
     async update(req, res) {
         const data = await menuService.update(req.query.id, req.body);
         res.send(appResponse("menu updated successfully"))

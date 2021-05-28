@@ -32,6 +32,10 @@ class MenuService {
         return await model.findOne({ _id: id });
     }
 
+    async getPopular() {
+        return await model.find({}).sort({noOfOrder:-1}).limit(20).populate('category','_id name');
+    }
+
     async delete(id) {
         return await model.remove({ _id: id });
     }
