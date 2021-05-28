@@ -26,15 +26,15 @@ class MenuController {
     }
 
     async ratings(req, res) {
-        const { menuId } = req.body
+        const { menuId, rating } = req.body
 
         const menu = await menuService.getOne(menuId)
 
         const noOfRating = menu.noOfRating + 1
-        const averageRating = menuService.rateMenu(Number(req.body.rating), menu.rating, menu.noOfRating, noOfRating)
+        const averageRating = menuService.rateMenu(Number(rating), menu.rating, menu.noOfRating, noOfRating)
 
         await menuService.update(menuId, { rating: averageRating, noOfRating })
-  
+
         res.send(appResponse("menu rated successfully"))
 
     }
