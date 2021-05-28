@@ -15,7 +15,7 @@ class userService {
         return await model.find({}).select(['-password', '-googleId']);
     }
     async update(id, updateQuery) {
-        return await model.findByIdAndUpdate(id, updateQuery);
+        return await model.findByIdAndUpdate(id, updateQuery, { new: true });
     }
 
     async resetPasswordMail(user, token) {
