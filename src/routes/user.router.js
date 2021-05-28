@@ -17,8 +17,8 @@ module.exports = function () {
     router.patch(
         "/user/update",
         authenticateUser,
-        joiValidator(updateUserSchema),
         upload.single('image'),
+        joiValidator(updateUserSchema),
         userCtrl.updateUser
     )
 
