@@ -10,7 +10,7 @@ module.exports = function () {
 
     router.post(
         "/menu",
-        //authenticateAdmin,
+        authenticateAdmin,
         upload.single('image'),
         joiValidator(menuSchema),
         menuCtrl.create
