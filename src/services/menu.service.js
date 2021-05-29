@@ -17,7 +17,7 @@ class MenuService {
         const page = Number(query.pageNumber) || 1
 
         const options = { page, limit, populate: 'category' }
-        query = _.omit(query, ["limit", "page"])
+        query = _.omit(query, ["limit", "pageNumber"])
 
         return model.paginate(query, options)
 
@@ -33,7 +33,7 @@ class MenuService {
     }
 
     async getPopular() {
-        return await model.find({}).sort({noOfOrder:-1}).limit(20).populate('category','_id name');
+        return await model.find({}).sort({ noOfOrder: -1 }).limit(20).populate('category', '_id name');
     }
 
     async delete(id) {
