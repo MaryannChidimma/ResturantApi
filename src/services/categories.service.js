@@ -12,7 +12,7 @@ class CategoriesService {
         return await model.find()
     }
     update = async (id, data) => {
-        return await model.findByIdAndUpdate(id, data)
+        return await model.findByIdAndUpdate(id, data, { new: true })
     }
     delete = async (id) => {
         return await model.remove({ _id: id })
