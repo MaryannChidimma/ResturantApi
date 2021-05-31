@@ -36,6 +36,7 @@ module.exports = function () {
     router.patch(
         "/menu/update",
         authenticateAdmin,
+        upload.single("image"),
         joiValidator(updateMenuSchema),
         menuCtrl.update
     )
