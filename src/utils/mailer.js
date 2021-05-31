@@ -1,13 +1,16 @@
 
 const nodemailer = require("nodemailer");
-const { resetPasswordMail } = require('../../lib/emailFormatter')
+const { resetPasswordMail, adminLoginMail } = require('../../lib/emailFormatter')
 
 
 
 const emailbody = (type, options) => {
-    const { name, token } = options
+    const { name, token, password } = options
     if ("resetPassword" === type) {
         return resetPasswordMail({ name, token })
+    }
+    else if ("adminLoginPassword") {
+        return adminLoginMail({ name, password, link: "https://www.google.com/" })
     }
 }
 let transporter = nodemailer.createTransport({
@@ -26,7 +29,7 @@ exports.mailComposer = async (email, subject, type, options) => {
         subject: subject,
         html: emailbody(type, options)
     };
-    var mail = await transporter.sendMail(mailOptions);
+    const mail = await transporter.sendMail(mailOptions);
     if (!mail) {
         throw new Error("Something went wrong")
     }
