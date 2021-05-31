@@ -30,6 +30,11 @@ const adminSchema = new mongoose.Schema({
         ref: "admin",
         required: true
     },
+
+    type: {
+        type: String,
+        default: "ordinary"
+    }
 }, { timestamps: true })
 
 module.exports = mongoose.model("admin", adminSchema);
