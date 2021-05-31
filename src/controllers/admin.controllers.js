@@ -55,6 +55,16 @@ class AdminController {
         res.send(appResponse("all admin", admins))
     }
 
+    delete = async (req, res) => {
+        if (req.admin.type === process.env.type) {
+            await adminService.delete(req.query.id)
+            res.send(appResponse("admin deleted successfully"))
+        }
+        else {
+            throw new UnAuthorizedError("Admin is not authorized to carry out this operation")
+        }
+    }
+
 }
 
 module.exports = new AdminController();

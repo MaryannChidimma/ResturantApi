@@ -29,5 +29,11 @@ module.exports = function () {
         adminController.getAll
     );
 
+    router.delete(
+        "/admin/delete",
+        authenticateAdmin,
+        adminController.delete
+    )
+
     return router;
 };

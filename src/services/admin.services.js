@@ -34,6 +34,9 @@ class adminService {
             { expiresIn }
         );
     }
+    async delete(id) {
+        return await model.remove({ _id: id })
+    }
 
 }
 
