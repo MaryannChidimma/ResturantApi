@@ -10,6 +10,16 @@ exports.generateToken = (data, time = "24h") => {
     )
 
 }
+
+exports.generateAdminToken = (data, time = "24h") => {
+    return jwt.sign(
+        { _id: data._id, email: data.email, type: data.type },
+        process.env.JWT_SECRET_KEY,
+        { expiresIn: time }
+    )
+
+}
+
 exports.hashPassword = async (password) => {
     const salt = await bcrypt.genSalt(10)
     return await bcrypt.hash(password, salt)
@@ -30,4 +40,6 @@ exports.genResetPasswordToken = (data, secretKey) => {
         { expiresIn: "24h" }
     )
 }
+
+
 

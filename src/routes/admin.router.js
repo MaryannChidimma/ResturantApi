@@ -23,5 +23,17 @@ module.exports = function () {
         adminController.signup
     );
 
+    router.get(
+        "/admin",
+        authenticateAdmin,
+        adminController.getAll
+    );
+
+    router.delete(
+        "/admin/delete",
+        authenticateAdmin,
+        adminController.delete
+    )
+
     return router;
 };

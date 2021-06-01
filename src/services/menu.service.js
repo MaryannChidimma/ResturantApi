@@ -23,9 +23,8 @@ class MenuService {
 
     }
 
-
-    async update(_id, updateQuery) {
-        return await model.findOneAndUpdate({ _id }, updateQuery, { new: true })
+    async update(id, updateQuery) {
+        return await model.findByIdAndUpdate(id, updateQuery, { new: true })
     }
 
     async getOne(id) {
@@ -33,7 +32,7 @@ class MenuService {
     }
 
     async getPopular() {
-        return await model.find({}).sort({ noOfOrder: -1 }).limit(20).populate('category', '_id name');
+        return await model.find({}).sort({ noOfOrder: -1 }).limit(10).populate('category', '_id name');
     }
 
     async delete(id) {

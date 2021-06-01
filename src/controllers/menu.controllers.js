@@ -19,13 +19,28 @@ class MenuController {
         const data = await menuService.getOne(req.query.id);
         res.send(appResponse("Menu details gotten successfully", data))
     }
+
     async getPopular(req, res) {
         const data = await menuService.getPopular();
         res.send(appResponse("Popular menu gotten successfully", data))
     }
+
     async update(req, res) {
-        const data = await menuService.update(req.query.id, req.body);
-        res.send(appResponse("menu updated successfully"))
+        const data = { ...req.body }
+
+        if (req.file) {
+            let fileUpload = await singleUpload(req.file)
+
+            if (!fileUpload) throw new BadRequestError("image uplaod failed")
+            console.log(fileUpload)
+
+            data.image = fileUpload
+
+        }
+
+        const menu = await menuService.update(req.query.id, data)
+
+        res.send(appResponse("categoryupdated successfully", menu))
     }
 
     async ratings(req, res) {
