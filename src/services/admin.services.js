@@ -27,13 +27,7 @@ class adminService {
 
         )
     }
-    async generateAuthToken(admin, expiresIn = "24h") {
-        return jwt.sign(
-            { id: admin._id, email: admin.email },
-            process.env.JWT_SECRET_KEY,
-            { expiresIn }
-        );
-    }
+
     async delete(id) {
         return await model.remove({ _id: id })
     }
