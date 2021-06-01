@@ -13,7 +13,8 @@ module.exports = (UserService) => {
             const isExistingUser = await UserService.findByEmail(profile._json.email)
 
             if (isExistingUser)
-                done(null, isExistingUser)
+                return done(null, isExistingUser)
+
 
             const newUser = await UserService.create({
                 "fullName": `${profile._json.family_name} ${profile._json.given_name}`,
@@ -21,7 +22,7 @@ module.exports = (UserService) => {
                 "googleId": profile._json.sub
             })
 
-            done(null, newUser)
+            return done(null, newUser)
 
 
 
