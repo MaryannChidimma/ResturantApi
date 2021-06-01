@@ -6,7 +6,8 @@ const _ = require("lodash");
 
 class userController {
     async getAll(req, res) {
-        const users = await userService.find();
+        const users = await userService.find(req.query);
+
         res.send(appResponse("All users", users));
     }
 
