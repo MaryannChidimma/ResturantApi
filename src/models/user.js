@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const mongoosePaginate = require("mongoose-paginate-v2");
 
 const userSchema = new mongoose.Schema(
 	{
@@ -35,10 +36,10 @@ const userSchema = new mongoose.Schema(
 			type: Boolean,
 			default: false,
 		},
-        image: {
-            type: String,
-            dafault: null,
-        },
+		image: {
+			type: String,
+			dafault: null,
+		},
 		address: {
 			type: String,
 			dafault: null,
@@ -52,4 +53,5 @@ const userSchema = new mongoose.Schema(
 	{ timestamps: true }
 );
 
+userSchema.plugin(mongoosePaginate)
 module.exports = mongoose.model("user", userSchema);
