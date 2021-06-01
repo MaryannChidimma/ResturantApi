@@ -2,7 +2,7 @@ const appResponse = require("../../lib/appResponse");
 const { BadRequestError, UnAuthorizedError } = require("../../lib/appError");
 const adminService = require("../services/admin.services");
 const { hashPassword, comparePassword, generateAdminToken } = require("../utils/authHandler");
-const { randomPassword } = require("../utils/generatePassword")
+const { randomPassword } = require("../utils/random")
 const _ = require('lodash')
 
 class AdminController {
