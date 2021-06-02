@@ -2,8 +2,10 @@ const Joi = require("joi");
 
 const updateUserSchema = Joi.object({
     fullName: Joi.string(),
-    LastName: Joi.string(),
-    phoneNumber: Joi.string().min(10)
+    phoneNumber: Joi.string().min(10),
+    image: Joi.string(),
+    address: Joi.string(),
+
 });
 
 module.exports = {

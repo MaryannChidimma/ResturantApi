@@ -49,7 +49,7 @@ class AuthController {
         const user = await userService.create(req.body);
 
         res.send(
-            appResponse("User created successfully", _.omit(user._doc, ['password', 'googleId']))
+            appResponse("User created successfully", _.omit(user._doc, ['googleId', 'password']))
         );
     };
 
