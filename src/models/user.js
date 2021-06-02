@@ -6,7 +6,6 @@ const userSchema = new mongoose.Schema(
 		fullName: {
 			type: String,
 			minlength: 3,
-			maxlength: 255,
 			required: true,
 			trim: true,
 		},
@@ -15,13 +14,11 @@ const userSchema = new mongoose.Schema(
 			type: String,
 			required: true,
 			minlength: 3,
-			maxlength: 255,
 			trim: true,
 		},
 		password: {
 			type: String,
 			minlength: 3,
-			maxlength: 255,
 			trim: true,
 		},
 
@@ -38,16 +35,18 @@ const userSchema = new mongoose.Schema(
 		},
 		image: {
 			type: String,
-			dafault: null,
-		},
-		address: {
-			type: String,
-			dafault: null,
+			default: null,
+			trim: true
 		},
 		googleId: {
 			type: String,
 			default: null,
 			trim: true,
+		},
+		address: {
+			type: String,
+			default: null,
+			trim: true
 		},
 	},
 	{ timestamps: true }
