@@ -35,7 +35,7 @@ class MenuService {
         return await model.find({}).sort({ noOfOrder: -1 }).limit(15).populate('category', '_id name');
     }
     async getSpecial() {
-        return await model.find({}).$where('this.discount !== 0').populate('category', '_id name');
+        return await model.find({ discount: { $ne: 0 } }).populate('category', '_id name');
     }
     async delete(id) {
         return await model.remove({ _id: id });
