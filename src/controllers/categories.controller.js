@@ -12,7 +12,7 @@ class CategoriesController {
     }
 
     getAll = async (req, res) => {
-        const data = await categoriesService.find()
+        const data = await categoriesService.find(req.query)
         res.send(appResponse("all categories", data))
     }
 

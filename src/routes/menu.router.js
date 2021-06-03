@@ -30,11 +30,13 @@ module.exports = function () {
 
     router.get(
         "/menu/getPopular",
+        joiValidator(filterMenuSchema, "query"),
         menuCtrl.getPopular
     )
 
     router.get(
         "/menu/getSpecial",
+        joiValidator(filterMenuSchema, "query"),
         menuCtrl.getSpecial
     )
 

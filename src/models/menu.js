@@ -31,14 +31,6 @@ const menuSchema = new mongoose.Schema({
         ref: "categories",
         required: true,
     },
-    isPopular: {
-        type: Boolean,
-        default: false
-    },
-    isSpecial: {
-        type: Boolean,
-        default: false
-    },
     rating: {
         type: Number,
         default: 5

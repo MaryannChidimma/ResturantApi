@@ -1,7 +1,7 @@
 const router = require("express").Router();
 const CategoriesCtrl = require("../controllers/categories.controller")
 const joiValidator = require('../validators/index')
-const { categoriesSchema, updateCategoriesSchema, validateId } = require('../validators/categories.schema')
+const { categoriesSchema, updateCategoriesSchema, validateId, filterCategorySchema } = require('../validators/categories.schema')
 const multer = require('multer')
 const { authenticateAdmin } = require('../middlewares/authMiddleware')
 const upload = multer({ dest: "uploads/" })
@@ -17,6 +17,7 @@ module.exports = function () {
 
     router.get(
         "/categories",
+        joiValidator(filterCategorySchema,"query"),
         CategoriesCtrl.getAll
     );
 
