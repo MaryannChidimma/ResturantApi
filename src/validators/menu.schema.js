@@ -18,8 +18,7 @@ const updateMenuSchema = Joi.object({
 })
 
 const filterMenuSchema = Joi.object({
-    isPopular: Joi.boolean(),
-    isSpecial: Joi.boolean(),
+    search:Joi.string(),
     category: Joi.string().regex(/^[0-9a-fA-F]{24}$/),
     limit: Joi.string(),
     pageNumber: Joi.string(),
