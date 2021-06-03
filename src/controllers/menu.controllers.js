@@ -24,7 +24,10 @@ class MenuController {
         const data = await menuService.getPopular();
         res.send(appResponse("Popular menu gotten successfully", data))
     }
-
+    async getSpecial(req, res) {
+        const data = await menuService.getSpecial();
+        res.send(appResponse("Special menu gotten successfully", data))
+    }
     async update(req, res) {
         const data = { ...req.body }
 

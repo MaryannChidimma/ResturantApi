@@ -33,6 +33,11 @@ module.exports = function () {
         menuCtrl.getPopular
     )
 
+    router.get(
+        "/menu/getSpecial",
+        menuCtrl.getSpecial
+    )
+
     router.patch(
         "/menu/update",
         authenticateAdmin,
