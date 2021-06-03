@@ -12,7 +12,8 @@ class CategoriesController {
     }
 
     getAll = async (req, res) => {
-        const data = await categoriesService.find()
+        const query = req.query.name?{ "name": { "$regex": req.query.name, "$options": "i" } }:{}
+        const data = await categoriesService.find(query)
         res.send(appResponse("all categories", data))
     }
 

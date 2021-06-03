@@ -9,8 +9,8 @@ class CategoriesService {
 
         return await category.create(data)
     }
-    find = async () => {
-        return await category.find()
+    find = async (query) => {
+        return await category.find(query)
     }
     update = async (id, data) => {
         return await category.findByIdAndUpdate(id, data, { new: true })
