@@ -14,6 +14,7 @@ const updateMenuSchema = Joi.object({
     description: Joi.string().min(2).max(255),
     price: Joi.number(),
     category: Joi.string().regex(/^[0-9a-fA-F]{24}$/),
+    discount: Joi.string(),
 })
 
 const filterMenuSchema = Joi.object({
