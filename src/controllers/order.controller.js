@@ -37,12 +37,14 @@ class orderController {
 
         if (!sum) throw new BadRequestError("somethidng went wrong, could not compute sum")
 
-        //check if the total gotten from flutterwave transaction matches the sum
-        if (req.transDetails.amount !== sum) {
-            throw new BadRequestError("invalid transaction could not make order")
-        }
         const subTotal = sum
         const total = subTotal + Number(req.body.shippingFee)
+
+        //check if the total gotten from flutterwave transaction matches the sum
+        if (req.transDetails.amount !== total) {
+            throw new BadRequestError("invalid transaction could not make order")
+        }
+
         const order = await orderService.makeOrder({ ...req.body, user, orderId, subTotal, total })
         res.send(appResponse("order created successfully", order))
 
