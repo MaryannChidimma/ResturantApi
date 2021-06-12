@@ -53,6 +53,15 @@ class orderController {
         res.send(appResponse("All orders", orders))
     }
 
+    updateOrder = async (req, res) => {
+        const order = await orderService.updateOrder(req.query.id, req.body)
+        res.send(appResponse("Orders updated successfully", order))
+    }
+
+    deleteOrder = async (req, res) => {
+        const order = await orderService.deleteOrder(req.query.id)
+        res.send(appResponse("Orders deleted successfully", order))
+    }
 }
 
 module.exports = new orderController()
