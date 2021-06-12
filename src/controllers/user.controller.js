@@ -2,6 +2,7 @@ const userService = require("../services/user.service");
 const appResponse = require("../../lib/appResponse");
 const { BadRequestError } = require("../../lib/appError");
 const { singleUpload } = require('../../lib/cloudinary')
+const orderService = require('../services/order.service')
 const _ = require("lodash");
 
 class userController {
@@ -23,6 +24,16 @@ class userController {
 
         const user = await userService.update(req.user._id, data);
         res.send(appResponse("Update sucessful", user));
+    }
+
+    async trackUsersOrder(req, res) {
+        const userOrder = await orderService.find({
+            user: req.user._id,
+            ...req.query
+        },
+            true
+        )
+        res.send(appResponse("user order details gotten successfully", userOrder))
     }
 
 }
