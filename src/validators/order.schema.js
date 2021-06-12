@@ -3,7 +3,7 @@ const Joi = require("joi");
 
 const makeOrderSchema = Joi.object({
     transactionId: Joi.string().required(),
-    user: Joi.string().regex(/^[0-9-FA-F]{24}$/),
+    user: Joi.string().regex(/^[0-9a-fA-F]{24}$/),
     subTotal: Joi.number(),
     total: Joi.number(),
     discount: Joi.number(),
@@ -19,8 +19,8 @@ const makeOrderSchema = Joi.object({
 });
 
 const filterOrderSchema = Joi.object({
-    user: Joi.string().regex(/^[0-9-FA-F]{24}$/),
-    menu: Joi.string().regex(/^[0-9-FA-F]{24}$/),
+    user: Joi.string().regex(/^[0-9a-fA-F]{24}$/),
+    menu: Joi.string().regex(/^[0-9a-fA-F]{24}$/),
     status: Joi.string(),
     orderDate: Joi.date(),
     deliveryDate: Joi.date(),
@@ -28,11 +28,33 @@ const filterOrderSchema = Joi.object({
 
 })
 
+const updateOrderSchema = Joi.object({
+    status: Joi.string()
+        .valid(
+            "active",
+            "pending",
+            "accepted",
+            "in Transit",
+            "delivered",
+            "cancelled",
+        ),
+    deliveryDate: Joi.date(),
+    deliveryType: Joi.string(),
+})
+
+const orderIdSchema = Joi.object({
+    id: Joi.string()
+        .regex(/^[0-9a-fA-F]{24}$/)
+        .messages({ "string.pattern.base": "Order id is invalid" })
+        .required(),
+})
+
 
 module.exports = {
     makeOrderSchema,
     filterOrderSchema,
-
+    updateOrderSchema,
+    orderIdSchema,
 };
 
 

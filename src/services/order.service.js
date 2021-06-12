@@ -8,7 +8,7 @@ class orderService {
         return await model.create(data)
     }
 
-    find = async (query) => {
+    find = async (query, populateItems = false) => {
         let sort = "-createdAt"
 
         if (query?.sort === "oldest") sort = "createdAt"
@@ -17,6 +17,9 @@ class orderService {
         const page = Number(query.pageNumber) || 1
 
         let options = { page, limit, sort }
+
+        if (populateItems) options.populate = "orderItems.menu"
+
         query = _.omit(query, ["limit", "pageNumber", "sort"])
 
         return model.paginate(query, options)
@@ -24,11 +27,19 @@ class orderService {
     }
 
     findByOrderId = async (orderId) => {
-        return await model.find({ orderId })
+        return await model.find({ orderId }).populate("orderItem.menu")
     }
 
-    calculateDiscount(discountedValue, price) {
+    updateOrder = async (id, updateQuery) => {
+        return await model.findByIdAndUpdate(id, updateQuery, { new: true })
+    }
+
+    calculateDiscount = (discountedValue, price) => {
         return (price / 100) * discountedValue
+    }
+
+    deleteOrder = async (id) => {
+        return await model.remove({ _id: id })
     }
 
 }
