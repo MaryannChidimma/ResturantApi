@@ -2,7 +2,7 @@ const Joi = require("joi");
 
 
 const makeOrderSchema = Joi.object({
-    transactionId: Joi.number().required(),
+    transactionId: Joi.string().required(),
     user: Joi.string().regex(/^[0-9-FA-F]{24}$/),
     subTotal: Joi.number(),
     total: Joi.number(),
