@@ -24,7 +24,7 @@ class orderController {
             '_id': { $in: menuIds }
         })
 
-        menus.forEach(menu => {
+        menus.docs.forEach(menu => {
             if (menu.discount === 0) {
                 sum += (parseFloat(menu.price) * parseFloat(orderItemsObj[menu._id]))
             }
@@ -34,22 +34,17 @@ class orderController {
                 sum += (parseFloat(price) * parseFloat(orderItemsObj[menu._id]))
             }
         })
+
         if (!sum) throw new BadRequestError("somethidng went wrong, could not compute sum")
 
         //check if the total gotten from flutterwave transaction matches the sum
         if (req.transDetails.amount !== sum) {
-
-            const subTotal = sum
-            const total = subTotal + Number(req.body.shippingFee)
-            const order = await orderService.makeOrder({ ...req.body, user, orderId, subTotal, total })
-            res.send(appResponse("order created successfully", order))
-
-        }
-
-        else {
             throw new BadRequestError("invalid transaction could not make order")
         }
-
+        const subTotal = sum
+        const total = subTotal + Number(req.body.shippingFee)
+        const order = await orderService.makeOrder({ ...req.body, user, orderId, subTotal, total })
+        res.send(appResponse("order created successfully", order))
 
     }
 
