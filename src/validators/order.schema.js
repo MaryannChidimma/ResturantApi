@@ -4,6 +4,8 @@ const Joi = require("joi");
 const makeOrderSchema = Joi.object({
     transactionId: Joi.string().required(),
     user: Joi.string().regex(/^[0-9a-fA-F]{24}$/),
+    fullName: Joi.string().required(),
+    phoneNumber: Joi.string().min(10).required(),
     subTotal: Joi.number(),
     total: Joi.number(),
     discount: Joi.number(),

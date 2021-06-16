@@ -12,6 +12,18 @@ const orderSchema = new mongoose.Schema({
         ref: "users",
         required: true
     },
+    fullName: {
+        type: String,
+        trim: true,
+        required: true
+    },
+
+    phoneNumber: {
+        type: String,
+        minlength: 10,
+        required: true,
+        trim: true
+    },
 
     subTotal: { type: Number, required: true },
     total: { type: Number, required: true },
@@ -52,7 +64,6 @@ const orderSchema = new mongoose.Schema({
         required: true,
         enum: ["instant Delivery"],
     },
-
 
 }, { timestamps: true, toObject: { getters: true } }
 )
