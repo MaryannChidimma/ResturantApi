@@ -12,7 +12,7 @@ const orderSchema = new mongoose.Schema({
         ref: "users",
         required: true
     },
-    fullname: {
+    fullName: {
         type: String,
         trim: true,
         required: true
