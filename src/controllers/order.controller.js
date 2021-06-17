@@ -51,11 +51,7 @@ class orderController {
         const order = await orderService.makeOrder({ ...req.body, user, orderId, subTotal, total })
         res.send(appResponse("order created successfully", order))
 
-        for (let i = 0; i < menus.docs.length; ++i) {
-            let no = menus.docs[i].noOfOrder
-            menuService.update(menus.docs[i]._id, { noOfOrder: no })
-
-        }
+        orderService.updateNoOfOrders(menus);
 
     }
 
