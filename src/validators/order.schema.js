@@ -8,6 +8,8 @@ const makeOrderSchema = Joi.object({
     phoneNumber: Joi.string().min(10).required(),
     subTotal: Joi.number(),
     total: Joi.number(),
+    fullName: Joi.string().required(),
+    phoneNumber: Joi.number(),
     discount: Joi.number(),
     shippingFee: Joi.number(),
     status: Joi.string(),
