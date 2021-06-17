@@ -1,8 +1,5 @@
 const model = require('../models/order')
 const _ = require('lodash')
-const menu = require('../models/menu')
-
-
 class orderService {
 
     makeOrder = async (data) => {
@@ -46,28 +43,6 @@ class orderService {
 
     deleteOrder = async (id) => {
         return await model.remove({ _id: id })
-    }
-
-    menuSum = (menus, qty) => {
-        let sum = 0
-
-        menus.forEach(menu => {
-
-            let price = parseFloat(menu.price)
-            let quantity = parseFloat(qty[menu._id])
-
-            if (menu.discount === 0) {
-                sum += this.calculateSum(price, quantity)
-            }
-            else {
-                const discountedPrice = this.calculateDiscount(menu.discount, price)
-                sum += this.calculateSum(discountedPrice, quantity)
-
-            }
-        })
-
-        return sum;
-
     }
 
 }
