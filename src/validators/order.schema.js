@@ -6,6 +6,8 @@ const makeOrderSchema = Joi.object({
     user: Joi.string().regex(/^[0-9a-fA-F]{24}$/),
     subTotal: Joi.number(),
     total: Joi.number(),
+    fullName: Joi.string().required(),
+    phoneNumber: Joi.number(),
     discount: Joi.number(),
     shippingFee: Joi.number(),
     status: Joi.string(),
