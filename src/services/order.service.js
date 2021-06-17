@@ -1,5 +1,6 @@
 const model = require('../models/order')
 const _ = require('lodash')
+const menuService = require('../services/menu.service')
 class orderService {
 
     makeOrder = async (data) => {
@@ -40,7 +41,13 @@ class orderService {
     calculateSum = (price, quantity) => {
         return (price * quantity)
     }
-
+    updateNoOfOrders = (menus) => {
+        console.log(menus.docs.length)
+        for (let i = 0; i < menus.docs.length; i++) {
+            let num = menus.docs[i].noOfOrder
+            menuService.update(menus.docs[i]._id, { noOfOrder: num })
+        }
+    }
     deleteOrder = async (id) => {
         return await model.remove({ _id: id })
     }
