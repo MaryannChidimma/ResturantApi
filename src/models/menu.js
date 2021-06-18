@@ -15,7 +15,8 @@ const menuSchema = new mongoose.Schema({
     },
 
     image: {
-        type: String
+        type: String,
+        default: null
     },
     price: {
         type: Number,
@@ -47,7 +48,16 @@ const menuSchema = new mongoose.Schema({
     noOfOrder: {
         type: Number,
         default: 0
-    }
+    },
+    options: [
+        {
+            item: {
+                type: mongoose.Types.ObjectId,
+                ref: "options",
+            }
+        }
+
+    ]
 
 
 },
