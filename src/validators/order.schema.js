@@ -15,7 +15,6 @@ const makeOrderSchema = Joi.object({
     status: Joi.string(),
     orderItems: Joi.array().required(),
     address: Joi.string().required(),
-    orderDate: Joi.date(),
     deliveryDate: Joi.date(),
     deliveryType: Joi.string(),
 

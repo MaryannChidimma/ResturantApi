@@ -56,7 +56,6 @@ const orderSchema = new mongoose.Schema({
 
     ],
     address: { type: String, required: true },
-    orderDate: { type: Date, default: null },
     deliveryDate: { type: Date, default: null },
 
     deliveryType: {
