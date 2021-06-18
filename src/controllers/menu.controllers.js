@@ -4,10 +4,15 @@ const appResponse = require('../../lib/appResponse')
 const { singleUpload } = require('../../lib/cloudinary')
 class MenuController {
     async create(req, res) {
-        const fileUpload = await singleUpload(req.file)
-        if (!fileUpload) throw new BadRequestError("image upload failed")
-        const data = await menuService.create({ ...req.body, image: fileUpload });
-        res.send(appResponse("menu created successfully", data));
+
+        const data = { ...req.body, }
+        if (req.file) {
+            const image = await singleUpload(req.file)
+            if (!image) throw new BadRequestError("image upload failed")
+            data.image = image
+        }
+        const menu = await menuService.create(data);
+        res.send(appResponse("menu created successfully", menu));
     }
 
     async getAll(req, res) {
