@@ -7,7 +7,7 @@ class orderService {
         return await model.create(data)
     }
 
-    find = async (query, populateItems = false) => {
+    find = async (query, populateItems = true) => {
         let sort = "-createdAt"
 
         if (query?.sort === "oldest") sort = "createdAt"
