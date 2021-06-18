@@ -1,3 +1,4 @@
+const optionsRoutes = require('./options.routes')
 const categoriesRoutes = require('./categories.routes')
 const authRoutes = require('./auth.router')
 const adminRoutes = require('./admin.router')
@@ -10,6 +11,7 @@ module.exports = (router) => {
     router.use(passport.initialize())
     router.use(passport.session())
     router.use(categoriesRoutes())
+    router.use(optionsRoutes())
     router.use(authRoutes())
     router.use(adminRoutes())
     router.use(menuRoutes())
