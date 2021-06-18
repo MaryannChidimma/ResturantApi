@@ -7,6 +7,7 @@ const menuSchema = Joi.object({
     price: Joi.number().required(),
     category: Joi.string().regex(/^[0-9a-fA-F]{24}$/).required(),
     discount: Joi.string(),
+    options: Joi.array(),
 });
 
 const updateMenuSchema = Joi.object({
@@ -15,10 +16,11 @@ const updateMenuSchema = Joi.object({
     price: Joi.number(),
     category: Joi.string().regex(/^[0-9a-fA-F]{24}$/),
     discount: Joi.string(),
+
 })
 
 const filterMenuSchema = Joi.object({
-    search:Joi.string(),
+    search: Joi.string(),
     category: Joi.string().regex(/^[0-9a-fA-F]{24}$/),
     limit: Joi.string(),
     pageNumber: Joi.string(),
