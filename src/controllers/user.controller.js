@@ -29,14 +29,14 @@ class userController {
 		const q =
 			req.query.status === "active"
 				? {
-						$and: [
-							{ user: req.user._id },
-							{ status: { $ne: "delivered" } },
-							{ status: { $ne: "cancelled" } },
-						],
-				  }
+					$and: [
+						{ user: req.user._id },
+						{ status: { $ne: "delivered" } },
+						{ status: { $ne: "cancelled" } },
+					],
+				}
 				: { user: req.user._id, ...req.query };
-		const userOrder = await orderService.find(q, true);
+		const userOrder = await orderService.find(q);
 		res.send(appResponse("user order details gotten successfully", userOrder));
 	}
 }
