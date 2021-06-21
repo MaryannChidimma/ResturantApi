@@ -10,7 +10,7 @@ module.exports = (UserService) => {
     },
         async function (accessToken, refreshToken, profile, done) {
 
-            const isExistingUser = await UserService.findByEmail(profile._json.email)
+            const isExistingUser = await UserService.findByQuery({ email: profile._json.email })
 
             if (isExistingUser)
                 return done(null, isExistingUser)

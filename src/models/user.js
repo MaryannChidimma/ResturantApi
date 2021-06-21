@@ -48,6 +48,9 @@ const userSchema = new mongoose.Schema(
 			default: null,
 			trim: true
 		},
+		token: {
+			type: String
+		}
 	},
 	{ timestamps: true }
 );

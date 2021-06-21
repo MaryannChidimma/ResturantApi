@@ -1,15 +1,15 @@
 
-const model = require('../models/user');
+const User = require('../models/user');
 const mailer = require('../utils/mailer')
 const _ = require('lodash')
 
 class userService {
     async create(data) {
-        return await model.create(data);
+        return await User.create(data);
     }
 
-    async findByEmail(email) {
-        return await model.findOne({ email });
+    async findByQuery(query) {
+        return await User.findOne(query);
     }
 
     async find(query) {
@@ -20,11 +20,12 @@ class userService {
         const options = { page, limit, select: (['-password', '-updatedAt']) }
         query = _.omit(query, ["limit", "pageNumber"])
 
-        return await model.paginate(query, options)
+        return await User.paginate(query, options)
 
     }
-    async update(id, updateQuery) {
-        return await model.findByIdAndUpdate(id, updateQuery, { new: true });
+
+    async update(query, updateQuery) {
+        return await User.findOneAndUpdate(query, updateQuery, { new: true });
     }
 
     async resetPasswordMail(user, token) {
@@ -33,7 +34,7 @@ class userService {
             "Reset Password",
             "resetPassword",
             {
-                name: user.firstName + " " + user.lastName,
+                name: user.fullName,
                 token
             }
 
