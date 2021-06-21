@@ -7,19 +7,16 @@ const {
 const { generateToken,
     hashPassword,
     comparePassword,
-    genResetPasswordToken,
 } = require('../utils/authHandler')
 
-const jwt = require('jsonwebtoken')
 const userService = require("../services/user.service");
 const _ = require('lodash');
 require('../services/passport.service')(userService)
-
-
-
+const { token } = require('../utils/random')
 class AuthController {
     login = async (req, res) => {
-        const isValidUser = await userService.findByEmail(req.body.email);
+        let { email } = req.body
+        const isValidUser = await userService.findByQuery({ email });
         if (!isValidUser) throw new UnAuthorizedError("invalid email or password");
 
         const isValidPassword = await comparePassword(
@@ -39,8 +36,8 @@ class AuthController {
     };
 
     signup = async (req, res) => {
-
-        const isExistingUser = await userService.findByEmail(req.body.email);
+        let { email } = req.body
+        const isExistingUser = await userService.findByQuery({ email });
         if (isExistingUser)
             throw new BadRequestError("This email is already registered");
 
@@ -54,41 +51,42 @@ class AuthController {
     };
 
     resetPasswordMail = async (req, res) => {
+
         const { email } = req.body
-        const validUser = await userService.findByEmail(email)
+
+        const resetToken = token()
+
+        const validUser = await userService.update({ email }, { token: resetToken })
+
         if (validUser) {
-            const secretKey = `${new Date(validUser.updatedAt).getTime()}${validUser._id}`
-
-            const token = genResetPasswordToken(validUser, secretKey)
-
-            const resetToken = `${token}__${validUser._id}`
-
             await userService.resetPasswordMail(validUser, resetToken)
         }
-
         res.send(appResponse("check your email"))
     }
 
-    resetPassword = async (req, res) => {
-        let { token, newPassword } = req.body
-        const [jwtToken, user_id] = token.split("__")
+    verifyToken = async (req, res) => {
+        let { token, email } = req.body
 
-        const validUser = await userService.findById(user_id)
+
+        const user = await userService.findByQuery({ email, token })
+        console.log({ user })
+        if (!user) throw new BadRequestError("incorrect token")
+
+        await userService.update({ email }, { $unset: { token } })
+
+        res.send("token is verified ")
+
+    }
+
+    resetPassword = async (req, res) => {
+        let { newPassword, email } = req.body
+
+        const password = await hashPassword(newPassword)
+
+        const validUser = await userService.update({ email }, { password })
         if (!validUser) throw new NotFoundError("user does not exists")
 
-        const secretKey = `${new Date(validUser.updatedAt).getTime()}${validUser._id}`
-
-        try {
-            const decodedUser = jwt.verify(jwtToken, secretKey)
-            newPassword = await hashPassword(newPassword)
-
-            await userService.update(decodedUser._id, { password: newPassword })
-
-            res.send(appResponse("user password updated successfully"))
-        }
-        catch (err) {
-            throw new BadRequestError("Invalid password reset token");
-        }
+        res.send(appResponse("user password updated successfully"))
 
     }
 
