@@ -23,6 +23,10 @@ module.exports = function () {
         "/auth/reset-password-mail",
         authCtrl.resetPasswordMail
     )
+    router.post(
+        "/auth/verify-token",
+        authCtrl.verifyToken
+    )
     router.patch(
         "/auth/reset-password",
         authCtrl.resetPassword
