@@ -7,10 +7,10 @@ const { verifyAuthToken } = require('../utils/authHandler')
 exports.authenticateUser = async function (req, res, next) {
     const token = req.headers["x-auth-token"]
     if (!token) throw new UnAuthorizedError
-    
+
     try {
         const decodedUser = await verifyAuthToken(token)
-        const user = await userService.findByEmail(decodedUser.email)
+        const user = await userService.findByQuery({ email: decodedUser.email })
         if (!user) throw new UnAuthorizedError()
 
         req.user = user
