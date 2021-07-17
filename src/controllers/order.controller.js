@@ -59,6 +59,10 @@ class orderController {
         const orders = await orderService.find(req.query);
         res.send(appResponse("All orders", orders))
     }
+    getByOrderId = async (req, res) => {
+        const order = await orderService.findByOrderId(req.query.orderId);
+        res.send(appResponse(" All orders", order))
+    }
 
     updateOrder = async (req, res) => {
         const order = await orderService.updateOrder(req.query.id, req.body)

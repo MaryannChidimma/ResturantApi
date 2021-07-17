@@ -14,7 +14,7 @@ class userService {
 
     async find(query) {
 
-        let limit = Number(query.limit) || 10;
+        let limit = Number(query.limit) || 30;
         const page = Number(query.pageNumber) || 1
 
         const options = { page, limit, select: (['-password', '-updatedAt']) }

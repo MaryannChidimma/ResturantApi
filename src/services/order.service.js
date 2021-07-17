@@ -12,7 +12,7 @@ class orderService {
 
         if (query?.sort === "oldest") sort = "createdAt"
 
-        let limit = Number(query.limit) || 10
+        let limit = Number(query.limit) || 30
         const page = Number(query.pageNumber) || 1
 
         let options = { page, limit, sort }
