@@ -1,16 +1,19 @@
 
 const nodemailer = require("nodemailer");
-const { resetPasswordMail, adminLoginMail } = require('../../lib/emailFormatter')
+const { resetPasswordMail, adminLoginMail, replyMessageMail } = require('../../lib/emailFormatter')
 
 
 
 const emailbody = (type, options) => {
-    const { name, token, password } = options
+    const { name, token, password, message } = options
     if ("resetPassword" === type) {
         return resetPasswordMail({ name, token })
     }
-    else if ("adminLoginPassword") {
+    else if ("adminLoginPassword" === type) {
         return adminLoginMail({ name, password, link: "https://www.google.com/" })
+    }
+    else if ("replyMessage" === type) {
+        return replyMessageMail({ message })
     }
 }
 let transporter = nodemailer.createTransport({
