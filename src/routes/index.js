@@ -6,6 +6,7 @@ const menuRoutes = require('./menu.router')
 const userRoutes = require('./user.router')
 const passport = require('passport')
 const orderRoutes = require('./order')
+const contactUsRoutes = require('./contactUs.router')
 
 module.exports = (router) => {
     router.use(passport.initialize())
@@ -17,6 +18,7 @@ module.exports = (router) => {
     router.use(menuRoutes())
     router.use(userRoutes())
     router.use(orderRoutes())
+    router.use(contactUsRoutes())
     return router;
 
 }
