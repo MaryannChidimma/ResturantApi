@@ -13,8 +13,12 @@ const authLoginSchema = Joi.object({
     email: Joi.string().email().required(),
     password: Joi.string().required(),
 });
+const authRefreshToken = Joi.object({
+    email: Joi.string().email().required(),
+})
 
 module.exports = {
     authSignUpSchema,
     authLoginSchema,
+    authRefreshToken
 };

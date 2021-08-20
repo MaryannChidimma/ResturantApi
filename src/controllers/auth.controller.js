@@ -90,6 +90,13 @@ class AuthController {
 
     }
 
+    refreshToken = async (req, res) => {
+        let user = await userService.findByQuery(req.body)
+        if (!user) throw new NotFoundError("user does not exist")
+        const authToken = generateToken(user)
+        res.send(appResponse("user refresh token", authToken))
+    }
+
     oAuth = async (req, res) => {
         const token = generateToken(req.user)
         const user = req.user

@@ -1,7 +1,7 @@
 const router = require("express").Router();
 const authCtrl = require("../controllers/auth.controller")
 const joiValidator = require("../validators");
-const { authSignUpSchema, authLoginSchema } = require("../validators/auth.schema")
+const { authSignUpSchema, authLoginSchema, authRefreshToken } = require("../validators/auth.schema")
 const passport = require("passport");
 require('../services/passport.service')
 
@@ -40,7 +40,11 @@ module.exports = function () {
         passport.authenticate("google"),
         authCtrl.oAuth
     );
-
+    router.post(
+        "/auth/refresh-token",
+        joiValidator(authRefreshToken),
+        authCtrl.refreshToken
+    )
 
     return router;
 };
